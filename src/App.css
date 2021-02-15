@@ -23,3 +23,16 @@
   width: 80px;
   text-align: center;
 }
+
+.middle {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 50%;
+  right: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  border: 3px solid black;
+  background-color: mediumaquamarine;
+}

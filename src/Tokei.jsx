@@ -24,6 +24,7 @@ export default class Tokei extends React.Component {
       <>
       <h1>時計</h1>
         <h1>{this.props.hour}:{minute}:{second}</h1>
+        <div className="middle"/>
         {this.renderHourTicksFn()}
       </>
     );
