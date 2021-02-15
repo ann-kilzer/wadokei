@@ -1,9 +1,10 @@
 import React from 'react';
-import Tick from './Tick'
+import PropTypes from 'prop-types';
+import Tick from './Tick';
 
-export default class Tokei extends React.Component {
-
-  renderHourTicksFn = () => {
+export default function Tokei(props) {
+  // This makes the hour ticks
+  function renderHourTicksFn() {
     const hourTicks = [];
     for (let i = 1; i <= 12; i += 1) {
       hourTicks.push(
@@ -17,16 +18,36 @@ export default class Tokei extends React.Component {
     return hourTicks;
   }
 
-  render() {
-    const minute = this.props.minute < 10 ? '0' + this.props.minute : this.props.minute;
-    const second = this.props.second < 10 ? '0' + this.props.second : this.props.second;
-    return (
-      <>
+  // Adjust the time
+  const { hour } = props;
+  let { minute, second } = props;
+  minute = minute < 10 ? `0${minute}` : minute;
+  second = second < 10 ? `0${second}` : second;
+
+  return (
+    <>
       <h1>時計</h1>
-        <h1>{this.props.hour}:{minute}:{second}</h1>
-        <div className="middle"/>
-        {this.renderHourTicksFn()}
-      </>
-    );
-  }
+      <h1>
+        {hour}
+        :
+        {minute}
+        :
+        {second}
+      </h1>
+      <div className="middle" />
+      {renderHourTicksFn()}
+    </>
+  );
 }
+
+Tokei.propTypes = {
+  hour: PropTypes.number,
+  minute: PropTypes.number,
+  second: PropTypes.string,
+};
+
+Tokei.defaultProps = {
+  hour: 12,
+  minute: 0,
+  second: 0,
+};

@@ -1,6 +1,6 @@
 import './App.css';
-import Tokei from './Tokei'
 import React, { useEffect, useState } from 'react';
+import Tokei from './Tokei';
 
 function App() {
   const [date, setDate] = useState(new Date());
@@ -9,12 +9,12 @@ function App() {
   useEffect(() => {
     const interval = setInterval(
       () => setDate(new Date()),
-      1000
+      1000,
     );
 
     return () => {
       clearInterval(interval);
-    }
+    };
   }, []);
 
   const hour = date.getHours() % 12;

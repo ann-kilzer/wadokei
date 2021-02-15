@@ -9,13 +9,13 @@ export default function Tick({
 }) {
   return (
     <div
-      className={`tokei_tick`}
+      className="tokei_tick"
       style={{
         transform: `rotate(${angle}deg)`,
       }}
     >
       <div
-        className={`tokei_tick_inner`}
+        className="tokei_tick_inner"
         style={{
           width: `${width}px`,
           top: 22,
@@ -24,7 +24,8 @@ export default function Tick({
       />
       {symbol && (
         <div
-        className={`tokei_tick_symbol`}>
+          className="tokei_tick_symbol"
+        >
           {symbol}
         </div>
       )}
@@ -37,4 +38,11 @@ Tick.propTypes = {
   length: PropTypes.number,
   symbol: PropTypes.string,
   width: PropTypes.number,
+};
+
+Tick.defaultProps = {
+  angle: 0,
+  length: 5,
+  width: 3,
+  symbol: '?',
 };
