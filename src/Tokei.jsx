@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tick from './Tick';
+import Hand from './Hand';
 
 export default function Tokei(props) {
   // This makes the hour ticks
@@ -24,6 +25,49 @@ export default function Tokei(props) {
   minute = minute < 10 ? `0${minute}` : minute;
   second = second < 10 ? `0${second}` : second;
 
+  function renderMiddle() {
+    return (
+      <div className="middle">
+        <div className="middle_inner" />
+      </div>
+    );
+  }
+
+  function renderHourHand() {
+    const angle = hour * 30 + (minute / 2);
+
+    return (
+      <Hand
+        name="hour"
+        length={60}
+        width={7}
+        angle={angle}
+      />
+    );
+  }
+
+  function renderMinuteHand() {
+    return (
+      <Hand
+        name="minute"
+        length={95}
+        width={3}
+        angle={minute * 6}
+      />
+    );
+  }
+
+  function renderSecondHand() {
+    return (
+      <Hand
+        name="second"
+        length={90}
+        width={1}
+        angle={second * 6}
+      />
+    );
+  }
+
   return (
     <>
       <h1>時計</h1>
@@ -34,8 +78,13 @@ export default function Tokei(props) {
         :
         {second}
       </h1>
-      <div className="middle" />
-      {renderHourTicksFn()}
+      <div className="tokei_face">
+        {renderHourTicksFn()}
+        {renderHourHand()}
+        {renderMinuteHand()}
+        {renderSecondHand()}
+        {renderMiddle()}
+      </div>
     </>
   );
 }
