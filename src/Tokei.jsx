@@ -85,7 +85,7 @@ export default function Tokei(props) {
 
   return (
     <>
-      <div className="tokei_face">
+      <div className="face tokei_face">
         {renderFaceText()}
         {renderHourTicksFn()}
         {renderHourHand()}

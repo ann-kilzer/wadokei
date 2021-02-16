@@ -2,16 +2,31 @@
   text-align: center;
 }
 
-.tokei_face {
+.face {
   position: relative;
-
   width: 100vw;
   height: 100vw;
-
-  border: 2px solid gainsboro;
   border-radius: 50%;
+}
+
+.tokei_face {
+  border: 2px solid gainsboro;
   background: radial-gradient(ghostwhite, aliceblue);
 }
+
+.wadokei_face {
+  border: 2px solid goldenrod;
+  background: conic-gradient(
+    from -90deg,
+    midnightblue 20deg,
+     darkblue 70deg,
+     yellow 110deg,
+     goldenrod 180deg, 
+     yellow 260deg,
+     darkblue 290deg,
+     midnightblue 340deg);
+}
+
 .tokei_tick {
   position: absolute;
   top: 0;

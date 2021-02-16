@@ -5,24 +5,31 @@ import Hand from './Hand';
 import unfixedHours from './unfixedHours';
 
 const REGIONS = 6;
+const MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
 
 export default function Wadokei(props) {
   // Calculate the day regions
   const { sunrise, sunset } = props;
   const daytime = sunset - sunrise;
   const dayRegion = daytime / REGIONS;
-  console.log(daytime, dayRegion);
+  const dayAngle = (dayRegion / MILLIS_PER_DAY) * 360;
+  const dayStart = 0;
+
+  const nighttime = MILLIS_PER_DAY - daytime;
+  const nightRegion = nighttime / REGIONS;
+  const nightAngle = (nightRegion / MILLIS_PER_DAY) * 360;
+  const nightStart = dayAngle * REGIONS;
   // Calculate the night regions
 
-  function renderRegion(region, offset = 0) {
+  function renderRegion(region, name, angle, offset = 0) {
     const hourTicks = [];
 
     for (let i = 0; i < region.length; i += 1) {
       const hour = region[i];
       hourTicks.push(
         <Tick
-          key={`hour_night_${hour.strike}`}
-          angle={offset + i * 30}
+          key={`hour_${name}_${hour.strike}`}
+          angle={offset + i * angle}
           symbol={hour.zodiacSymbol}
         />,
       );
@@ -34,9 +41,13 @@ export default function Wadokei(props) {
   function renderHourTicksFn() {
     const hourTicks = [];
     // day hours
-    hourTicks.push(...renderRegion(unfixedHours.day));
+    hourTicks.push(
+      ...renderRegion(unfixedHours.day, 'day', dayAngle, dayStart),
+    );
     // night hours
-    hourTicks.push(...renderRegion(unfixedHours.night, 180));
+    hourTicks.push(
+      ...renderRegion(unfixedHours.night, 'night', nightAngle, nightStart),
+    );
     return hourTicks;
   }
 
@@ -45,6 +56,22 @@ export default function Wadokei(props) {
   let { minute, second } = props;
   minute = minute < 10 ? `0${minute}` : minute;
   second = second < 10 ? `0${second}` : second;
+
+  function renderDaySegment() {
+    return (
+      <div className="day_outer">
+        <div
+          className="day_segment"
+          style={
+            {
+              // transform: 'translate(0, -50vw) rotate(90deg) rotate(0deg)',
+              // transformOrigin: '50vw 100vw',
+            }
+          }
+        />
+      </div>
+    );
+  }
 
   function renderMiddle() {
     return (
@@ -55,7 +82,7 @@ export default function Wadokei(props) {
   }
 
   function renderHourHand() {
-    const angle = hour * 30 + (minute / 2);
+    const angle = hour * 30 + minute / 2;
 
     return (
       <Hand
@@ -78,21 +105,10 @@ export default function Wadokei(props) {
     );
   }
 
-  function renderSecondHand() {
-    return (
-      <Hand
-        name="second"
-        length={90}
-        width={1}
-        angle={second * 6}
-      />
-    );
-  }
-
   function renderFaceText() {
     return (
       <div className="face_text">
-        <h1>時計</h1>
+        <h1>和時計</h1>
         <h1>
           {hour}
           :
@@ -106,12 +122,12 @@ export default function Wadokei(props) {
 
   return (
     <>
-      <div className="tokei_face">
+      <div className="face wadokei_face">
+        {renderDaySegment()}
         {renderFaceText()}
         {renderHourTicksFn()}
         {renderHourHand()}
         {renderMinuteHand()}
-        {renderSecondHand()}
         {renderMiddle()}
       </div>
     </>
@@ -124,7 +140,6 @@ Wadokei.propTypes = {
   second: PropTypes.number,
   sunrise: PropTypes.instanceOf(Date).isRequired,
   sunset: PropTypes.instanceOf(Date).isRequired,
-
 };
 
 Wadokei.defaultProps = {
