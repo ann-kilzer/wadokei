@@ -2,20 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tick from './Tick';
 import Hand from './Hand';
+import unfixedHours from './unfixedHours';
 
-export default function Tokei(props) {
-  // This makes the hour ticks
-  function renderHourTicksFn() {
+const REGIONS = 6;
+
+export default function Wadokei(props) {
+  // Calculate the day regions
+  const { sunrise, sunset } = props;
+  const daytime = sunset - sunrise;
+  const dayRegion = daytime / REGIONS;
+  console.log(daytime, dayRegion);
+  // Calculate the night regions
+
+  function renderRegion(region, offset = 0) {
     const hourTicks = [];
-    for (let i = 1; i <= 12; i += 1) {
+
+    for (let i = 0; i < region.length; i += 1) {
+      const hour = region[i];
       hourTicks.push(
         <Tick
-          key={`hour_${i}`}
-          angle={i * 30}
-          symbol={`${i}`}
+          key={`hour_night_${hour.strike}`}
+          angle={offset + i * 30}
+          symbol={hour.zodiacSymbol}
         />,
       );
     }
+    return hourTicks;
+  }
+
+  // This makes the unfixed hour ticks
+  function renderHourTicksFn() {
+    const hourTicks = [];
+    // day hours
+    hourTicks.push(...renderRegion(unfixedHours.day));
+    // night hours
+    hourTicks.push(...renderRegion(unfixedHours.night, 180));
     return hourTicks;
   }
 
@@ -97,13 +118,16 @@ export default function Tokei(props) {
   );
 }
 
-Tokei.propTypes = {
+Wadokei.propTypes = {
   hour: PropTypes.number,
   minute: PropTypes.number,
-  second: PropTypes.string,
+  second: PropTypes.number,
+  sunrise: PropTypes.instanceOf(Date).isRequired,
+  sunset: PropTypes.instanceOf(Date).isRequired,
+
 };
 
-Tokei.defaultProps = {
+Wadokei.defaultProps = {
   hour: 12,
   minute: 0,
   second: 0,

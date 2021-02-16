@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import Tokei from './Tokei';
+import Wadokei from './Wadokei';
 
 function App() {
   const [date, setDate] = useState(new Date());
@@ -21,8 +22,13 @@ function App() {
   const minute = date.getMinutes();
   const second = date.getSeconds();
 
+  // TODO: Fetch from https://sunrise-sunset.org/api
+  const sunrise = Date('2021-02-16T06:26:31');
+  const sunset = Date('2021-02-16T17:23:29');
+
   return (
     <div className="App">
+      <Wadokei hour={hour} minute={minute} second={second} sunrise={sunrise} sunset={sunset} />
       <Tokei hour={hour} minute={minute} second={second} />
     </div>
   );
