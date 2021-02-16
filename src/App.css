@@ -15,16 +15,7 @@
 }
 
 .wadokei_face {
-  border: 2px solid goldenrod;
-  background: conic-gradient(
-    from -90deg,
-    midnightblue 20deg,
-     darkblue 70deg,
-     yellow 110deg,
-     goldenrod 180deg, 
-     yellow 260deg,
-     darkblue 290deg,
-     midnightblue 340deg);
+  border: 2px solid goldenrod1;
 }
 
 .tokei_tick {
@@ -92,4 +83,11 @@
   padding-top: 20%;
   width: 100%;
   text-align: center;
+}
+
+.day_segment {
+  position: relative;
+  width: 100vw;
+  height: 100vw;
+  border-radius: 100%;
 }

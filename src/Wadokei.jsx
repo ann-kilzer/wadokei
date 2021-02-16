@@ -13,12 +13,12 @@ export default function Wadokei(props) {
   const daytime = sunset - sunrise;
   const dayRegion = daytime / REGIONS;
   const dayAngle = (dayRegion / MILLIS_PER_DAY) * 360;
-  const dayStart = 0;
+  const dayStart = 360 - 3 * dayAngle;
 
   const nighttime = MILLIS_PER_DAY - daytime;
   const nightRegion = nighttime / REGIONS;
   const nightAngle = (nightRegion / MILLIS_PER_DAY) * 360;
-  const nightStart = dayAngle * REGIONS;
+  const nightStart = dayAngle * 3;
   // Calculate the night regions
 
   function renderRegion(region, name, angle, offset = 0) {
@@ -58,18 +58,32 @@ export default function Wadokei(props) {
   second = second < 10 ? `0${second}` : second;
 
   function renderDaySegment() {
+    // calculate our gradient points based on sunrise and sunset
+    const blueMorning = nightAngle;
+    const dawn = 2 * nightAngle;
+    const yellowMorning = 3 * nightAngle + dayAngle;
+    const noon = 180;
+    const yellowAfternoon = noon + 2 * dayAngle;
+    const sundown = 360 - 2 * nightAngle;
+    const blueEvening = 360 - nightAngle;
+    const daylightStyle = {
+      background: `conic-gradient(
+        from 180deg,
+        midnightblue ${blueMorning}deg,
+        darkblue ${dawn}deg,
+        yellow ${yellowMorning}deg,
+        goldenrod ${noon}deg,
+        yellow ${yellowAfternoon}deg,
+        darkblue ${sundown}deg,
+        midnightblue ${blueEvening}deg
+        )`,
+    };
+
     return (
-      <div className="day_outer">
-        <div
-          className="day_segment"
-          style={
-            {
-              // transform: 'translate(0, -50vw) rotate(90deg) rotate(0deg)',
-              // transformOrigin: '50vw 100vw',
-            }
-          }
-        />
-      </div>
+      <div
+        className="day_segment"
+        style={daylightStyle}
+      />
     );
   }
 
