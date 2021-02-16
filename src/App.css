@@ -40,6 +40,22 @@
   text-align: center;
 }
 
+.tokei_tick_emoji {
+  position: relative;
+  left: -40px;
+  width: 80px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.day_tick {
+  color: black;
+}
+
+.night_tick {
+  color: lightgoldenrodyellow;
+}
+
 .middle {
   position: absolute;
   top: 50%;
@@ -86,7 +102,7 @@
 }
 
 .day_segment {
-  position: relative;
+  position: absolute;
   width: 100vw;
   height: 100vw;
   border-radius: 100%;

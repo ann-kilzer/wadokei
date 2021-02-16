@@ -31,6 +31,8 @@ export default function Wadokei(props) {
           key={`hour_${name}_${hour.strike}`}
           angle={offset + i * angle}
           symbol={hour.zodiacSymbol}
+          emoji={hour.zodiacEmoji}
+          regionName={name}
         />,
       );
     }
