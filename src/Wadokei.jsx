@@ -114,9 +114,10 @@ export default function Wadokei(props) {
   }
 
   function renderFaceText() {
+    console.log(waTime.waHour);
     const numeral = waTime.isDay
-      ? unfixedHours.day[waTime.hour].numeral
-      : unfixedHours.night[waTime.hour].numeral;
+      ? unfixedHours.day[waTime.waHour].numeral
+      : unfixedHours.night[waTime.waHour].numeral;
     return (
       <div className="face_text">
         <h1>和時計</h1>
