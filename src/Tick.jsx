@@ -7,6 +7,7 @@ export default function Tick({
   width = 3,
   symbol,
   emoji,
+  secondarySymbol,
   regionName,
 }) {
   return (
@@ -31,6 +32,13 @@ export default function Tick({
           {symbol}
         </div>
       )}
+      {secondarySymbol && (
+        <div
+          className="tokei_tick_secondary_symbol"
+        >
+          {secondarySymbol}
+        </div>
+      )}
       {emoji && (
         <div
           className="tokei_tick_emoji"
@@ -49,6 +57,7 @@ Tick.propTypes = {
   width: PropTypes.number,
   regionName: PropTypes.string.isRequired,
   emoji: PropTypes.string,
+  secondarySymbol: PropTypes.string,
 };
 
 Tick.defaultProps = {
@@ -56,4 +65,5 @@ Tick.defaultProps = {
   length: 5,
   width: 3,
   emoji: undefined,
+  secondarySymbol: undefined,
 };

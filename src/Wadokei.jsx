@@ -31,8 +31,9 @@ export default function Wadokei(props) {
         <Tick
           key={`hour_${name}_${hour.strike}`}
           angle={offset + i * angle}
-          symbol={hour.zodiacSymbol}
+          symbol={hour.numeral}
           emoji={hour.zodiacEmoji}
+          secondarySymbol={hour.zodiacSymbol}
           regionName={name}
         />,
       );
@@ -98,7 +99,13 @@ export default function Wadokei(props) {
 
   const { dayMinutes } = props;
   const sunriseMinutes = sunrise.getHours() * 60 + sunrise.getMinutes();
+  const sunsetMinutes = sunset.getHours() * 60 + sunset.getMinutes();
+  const isDay = dayMinutes >= sunriseMinutes && dayMinutes < sunsetMinutes;
+
+  const daylightMinutes = sunsetMinutes - sunriseMinutes;
+  const darkMinutes = MINUTES_PER_DAY - daylightMinutes;
   const minutesFromSunrise = dayMinutes - sunriseMinutes;
+  const minutesFromSunset = dayMinutes - sunsetMinutes;
 
   function renderHourHand() {
     const angle = dayStart + (minutesFromSunrise / MINUTES_PER_DAY) * 360;
@@ -114,7 +121,19 @@ export default function Wadokei(props) {
   }
 
   function renderFaceText() {
-    const hour = Math.floor(minutesFromSunrise / 60) % 12;
+    let hour = 0;
+    if (isDay) {
+      hour = (minutesFromSunrise / daylightMinutes) * 6;
+    } else {
+      const nightMinute = minutesFromSunrise < 0
+        ? darkMinutes + minutesFromSunrise
+        : minutesFromSunset;
+
+      hour = (nightMinute / darkMinutes) * 6; // TODO: check this
+    }
+
+    hour = Math.floor(hour);
+
     const numeral = hour < 6
       ? unfixedHours.day[hour % 6].numeral
       : unfixedHours.night[hour % 6].numeral;
