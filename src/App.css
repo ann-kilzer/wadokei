@@ -100,14 +100,24 @@
   transform: translateX(-50%);
 }
 
-.face_text {
+.wa_text {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 500;
+}
+
+.digital_hms_text {
   font-family: monospace;
+}
+
+.face_text {
   color: black;
   position: absolute;
   padding-top: 20%;
   width: 100%;
   text-align: center;
 }
+
+
 
 .day_segment {
   position: absolute;

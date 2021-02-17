@@ -149,7 +149,7 @@ export default function Wadokei(props) {
 
   return (
     <>
-      <div className="face wadokei_face">
+      <div className="face wadokei_face wa_text">
         {renderDaySegment()}
         {renderFaceText()}
         {renderHourTicksFn()}
