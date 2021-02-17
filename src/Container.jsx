@@ -25,12 +25,11 @@ export default function Container(props) {
   const hour = date.getHours() % 12;
   const minute = date.getMinutes();
   const second = date.getSeconds();
-  const dayMinutes = date.getHours() * 60 + minute;
 
   function renderClock() {
     if (wa) {
       return (
-        <Wadokei dayMinutes={dayMinutes} sunrise={sunrise} sunset={sunset} />
+        <Wadokei date={date} sunrise={sunrise} sunset={sunset} />
       );
     }
     return (<Tokei hour={hour} minute={minute} second={second} />);

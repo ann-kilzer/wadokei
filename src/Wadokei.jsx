@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Tick from './Tick';
 import Hand from './Hand';
 import unfixedHours from './unfixedHours';
+import WaTime from './waTime';
 
 const REGIONS = 6;
 const MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
@@ -10,7 +11,10 @@ const MINUTES_PER_DAY = 24 * 60;
 
 export default function Wadokei(props) {
   // Calculate the day regions
-  const { sunrise, sunset } = props;
+  const { date, sunrise, sunset } = props;
+
+  const waTime = new WaTime(date, sunrise, sunset);
+
   const daytime = sunset - sunrise;
   const dayRegion = daytime / REGIONS;
   const dayAngle = (dayRegion / MILLIS_PER_DAY) * 360;
@@ -97,18 +101,17 @@ export default function Wadokei(props) {
     );
   }
 
-  const { dayMinutes } = props;
-  const sunriseMinutes = sunrise.getHours() * 60 + sunrise.getMinutes();
-  const sunsetMinutes = sunset.getHours() * 60 + sunset.getMinutes();
-  const isDay = dayMinutes >= sunriseMinutes && dayMinutes < sunsetMinutes;
+  // const sunriseMinutes = sunrise.getHours() * 60 + sunrise.getMinutes();
+  // const sunsetMinutes = sunset.getHours() * 60 + sunset.getMinutes();
+  // const isDay = dayMinutes >= sunriseMinutes && dayMinutes < sunsetMinutes;
 
-  const daylightMinutes = sunsetMinutes - sunriseMinutes;
-  const darkMinutes = MINUTES_PER_DAY - daylightMinutes;
-  const minutesFromSunrise = dayMinutes - sunriseMinutes;
-  const minutesFromSunset = dayMinutes - sunsetMinutes;
+  // const daylightMinutes = sunsetMinutes - sunriseMinutes;
+  // const darkMinutes = MINUTES_PER_DAY - daylightMinutes;
+  // const minutesFromSunrise = dayMinutes - sunriseMinutes;
+  // const minutesFromSunset = dayMinutes - sunsetMinutes;
 
   function renderHourHand() {
-    const angle = dayStart + (minutesFromSunrise / MINUTES_PER_DAY) * 360;
+    const angle = dayStart + (waTime.waMinute / MINUTES_PER_DAY) * 360;
 
     return (
       <Hand
@@ -121,20 +124,10 @@ export default function Wadokei(props) {
   }
 
   function renderFaceText() {
-    let hour = 0;
-    if (isDay) {
-      hour = (minutesFromSunrise / daylightMinutes) * 6;
-    } else {
-      const nightMinute = minutesFromSunrise < 0
-        ? darkMinutes + minutesFromSunrise
-        : minutesFromSunset;
+    const hour = waTime.waHour;
 
-      hour = (nightMinute / darkMinutes) * 6; // TODO: check this
-    }
-
-    hour = Math.floor(hour);
-
-    const numeral = hour < 6
+    console.log(hour);
+    const numeral = waTime.isDay
       ? unfixedHours.day[hour % 6].numeral
       : unfixedHours.night[hour % 6].numeral;
     return (
@@ -161,11 +154,7 @@ export default function Wadokei(props) {
 }
 
 Wadokei.propTypes = {
-  dayMinutes: PropTypes.number,
+  date: PropTypes.instanceOf(Date).isRequired,
   sunrise: PropTypes.instanceOf(Date).isRequired,
   sunset: PropTypes.instanceOf(Date).isRequired,
-};
-
-Wadokei.defaultProps = {
-  dayMinutes: 0,
 };
