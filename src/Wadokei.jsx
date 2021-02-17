@@ -6,6 +6,7 @@ import unfixedHours from './unfixedHours';
 
 const REGIONS = 6;
 const MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
+const MINUTES_PER_DAY = 24 * 60;
 
 export default function Wadokei(props) {
   // Calculate the day regions
@@ -53,12 +54,6 @@ export default function Wadokei(props) {
     return hourTicks;
   }
 
-  // Adjust the time
-  const { hour } = props;
-  let { minute, second } = props;
-  minute = minute < 10 ? `0${minute}` : minute;
-  second = second < 10 ? `0${second}` : second;
-
   function renderDaySegment() {
     // calculate our gradient points based on sunrise and sunset
     const blueMorning = nightAngle;
@@ -97,8 +92,12 @@ export default function Wadokei(props) {
     );
   }
 
+  const { dayMinutes } = props;
+  const sunriseMinutes = sunrise.getHours() * 60 + sunrise.getMinutes();
+  const minutesFromSunrise = dayMinutes - sunriseMinutes;
+
   function renderHourHand() {
-    const angle = hour * 30 + minute / 2;
+    const angle = dayStart + (minutesFromSunrise / MINUTES_PER_DAY) * 360;
 
     return (
       <Hand
@@ -110,27 +109,16 @@ export default function Wadokei(props) {
     );
   }
 
-  function renderMinuteHand() {
-    return (
-      <Hand
-        name="minute"
-        length={95}
-        width={3}
-        angle={minute * 6}
-      />
-    );
-  }
-
   function renderFaceText() {
+    const hour = Math.floor(minutesFromSunrise / 60) % 12;
+    const numeral = hour < 6
+      ? unfixedHours.day[hour % 6].numeral
+      : unfixedHours.night[hour % 6].numeral;
     return (
       <div className="face_text">
         <h1>和時計</h1>
         <h1>
-          {hour}
-          :
-          {minute}
-          :
-          {second}
+          {numeral}
         </h1>
       </div>
     );
@@ -143,7 +131,6 @@ export default function Wadokei(props) {
         {renderFaceText()}
         {renderHourTicksFn()}
         {renderHourHand()}
-        {renderMinuteHand()}
         {renderMiddle()}
       </div>
     </>
@@ -151,15 +138,11 @@ export default function Wadokei(props) {
 }
 
 Wadokei.propTypes = {
-  hour: PropTypes.number,
-  minute: PropTypes.number,
-  second: PropTypes.number,
+  dayMinutes: PropTypes.number,
   sunrise: PropTypes.instanceOf(Date).isRequired,
   sunset: PropTypes.instanceOf(Date).isRequired,
 };
 
 Wadokei.defaultProps = {
-  hour: 12,
-  minute: 0,
-  second: 0,
+  dayMinutes: 0,
 };
