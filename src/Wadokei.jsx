@@ -58,9 +58,11 @@ export default function Wadokei(props) {
     // calculate our gradient points based on sunrise and sunset
     const blueMorning = nightAngle;
     const dawn = 2 * nightAngle;
+    const pinkMorning = 3 * nightAngle;
     const yellowMorning = 3 * nightAngle + dayAngle;
     const noon = 180;
     const yellowAfternoon = noon + 2 * dayAngle;
+    const pinkAfternoon = 360 - 3 * nightAngle;
     const sundown = 360 - 2 * nightAngle;
     const blueEvening = 360 - nightAngle;
     const daylightStyle = {
@@ -68,9 +70,11 @@ export default function Wadokei(props) {
         from 180deg,
         midnightblue ${blueMorning}deg,
         darkblue ${dawn}deg,
-        yellow ${yellowMorning}deg,
-        goldenrod ${noon}deg,
-        yellow ${yellowAfternoon}deg,
+        lightpink ${pinkMorning}deg,
+        gold ${yellowMorning}deg,
+        lemonchiffon ${noon}deg,
+        gold ${yellowAfternoon}deg,
+        lightcoral ${pinkAfternoon}deg,
         darkblue ${sundown}deg,
         midnightblue ${blueEvening}deg
         )`,

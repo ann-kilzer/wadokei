@@ -7,8 +7,6 @@ function App() {
   const sunrise = new Date('2021-02-17T06:26:31');
   const sunset = new Date('2021-02-17T17:23:29');
 
-  console.log(sunset - sunrise);
-
   return (
     <div className="App">
       <Container sunrise={sunrise} sunset={sunset} />
