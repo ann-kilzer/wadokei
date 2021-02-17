@@ -25,7 +25,6 @@ export default function Wadokei(props) {
   const nightAngle = (nightRegion / MILLIS_PER_DAY) * 360;
   const nightStart = dayAngle * 3;
 
-
   function renderRegion(region, name, angle, offset = 0) {
     const hourTicks = [];
 
