@@ -10,21 +10,21 @@ const MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
 const MINUTES_PER_DAY = 24 * 60;
 
 export default function Wadokei(props) {
-  // Calculate the day regions
   const { date, sunrise, sunset } = props;
-
   const waTime = new WaTime(date, sunrise, sunset);
 
+  // Calculate the day regions
   const daytime = sunset - sunrise;
   const dayRegion = daytime / REGIONS;
   const dayAngle = (dayRegion / MILLIS_PER_DAY) * 360;
   const dayStart = 360 - 3 * dayAngle;
 
+  // Calculate the night regions
   const nighttime = MILLIS_PER_DAY - daytime;
   const nightRegion = nighttime / REGIONS;
   const nightAngle = (nightRegion / MILLIS_PER_DAY) * 360;
   const nightStart = dayAngle * 3;
-  // Calculate the night regions
+
 
   function renderRegion(region, name, angle, offset = 0) {
     const hourTicks = [];
@@ -101,15 +101,6 @@ export default function Wadokei(props) {
     );
   }
 
-  // const sunriseMinutes = sunrise.getHours() * 60 + sunrise.getMinutes();
-  // const sunsetMinutes = sunset.getHours() * 60 + sunset.getMinutes();
-  // const isDay = dayMinutes >= sunriseMinutes && dayMinutes < sunsetMinutes;
-
-  // const daylightMinutes = sunsetMinutes - sunriseMinutes;
-  // const darkMinutes = MINUTES_PER_DAY - daylightMinutes;
-  // const minutesFromSunrise = dayMinutes - sunriseMinutes;
-  // const minutesFromSunset = dayMinutes - sunsetMinutes;
-
   function renderHourHand() {
     const angle = dayStart + (waTime.waMinute / MINUTES_PER_DAY) * 360;
 
@@ -124,12 +115,9 @@ export default function Wadokei(props) {
   }
 
   function renderFaceText() {
-    const hour = waTime.waHour;
-
-    console.log(hour);
     const numeral = waTime.isDay
-      ? unfixedHours.day[hour % 6].numeral
-      : unfixedHours.night[hour % 6].numeral;
+      ? unfixedHours.day[waTime.hour].numeral
+      : unfixedHours.night[waTime.hour].numeral;
     return (
       <div className="face_text">
         <h1>和時計</h1>

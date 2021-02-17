@@ -34,7 +34,9 @@ export default class WaTime {
 
   // minute of the day in 'Wa' time
   get waMinute() {
-    return this.minutesFromSunrise % MINUTES_PER_DAY;
+    return this.minutesFromSunrise >= 0
+      ? this.minutesFromSunrise
+      : this.minutesFromSunrise + MINUTES_PER_DAY;
   }
 
   // hour of the day in 'Wa' time
