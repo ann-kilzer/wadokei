@@ -5,7 +5,7 @@ import Tokei from './Tokei';
 import Wadokei from './Wadokei';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 
-export default function Container({ sunrise, sunset }) {
+export default function Container({ sunrise, sunset, size }) {
   const [date, setDate] = useState(new Date());
 
   const [wa, setWa] = useState(true);
@@ -40,18 +40,36 @@ export default function Container({ sunrise, sunset }) {
   };
 
   return (
-    <div className="App">
+    <div
+      className="container"
+      style={{
+        width: `${size}px`,
+      }}
+    >
+      <div
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+        }}
+      >
+        {renderClock()}
+      </div>
       <ToggleSwitch
         id="waToggle"
         checked={wa}
         onChange={onWaChange}
         optionLabels={['和', '洋']}
       />
-      {renderClock()}
     </div>
   );
 }
+
 Container.propTypes = {
   sunrise: PropTypes.instanceOf(Date).isRequired,
   sunset: PropTypes.instanceOf(Date).isRequired,
+  size: PropTypes.number,
+};
+
+Container.defaultProps = {
+  size: 600,
 };
