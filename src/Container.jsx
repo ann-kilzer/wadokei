@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tokei from './Tokei';
 import Wadokei from './Wadokei';
+import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 
 export default function Container(props) {
   const { sunrise, sunset } = props;
   const [date, setDate] = useState(new Date());
 
-  const [wa] = useState(true);
+  const [wa, setWa] = useState(false);
 
   // update the time every second
   useEffect(() => {
@@ -35,8 +36,18 @@ export default function Container(props) {
     return (<Tokei hour={hour} minute={minute} second={second} />);
   }
 
+  const onWaChange = (checked) => {
+    setWa(checked);
+  };
+
   return (
     <div className="App">
+      <ToggleSwitch
+        id="waToggle"
+        checked={wa}
+        onChange={onWaChange}
+        optionLabels={['和', '外']}
+      />
       {renderClock()}
     </div>
   );

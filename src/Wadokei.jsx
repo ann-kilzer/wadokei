@@ -114,7 +114,6 @@ export default function Wadokei(props) {
   }
 
   function renderFaceText() {
-    console.log(waTime.waHour);
     const numeral = waTime.isDay
       ? unfixedHours.day[waTime.waHour].numeral
       : unfixedHours.night[waTime.waHour].numeral;
