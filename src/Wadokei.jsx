@@ -72,15 +72,15 @@ export default function Wadokei(props) {
     const daylightStyle = {
       background: `conic-gradient(
         from 180deg,
-        midnightblue ${blueMorning}deg,
-        darkblue ${dawn}deg,
-        lightpink ${pinkMorning}deg,
-        gold ${yellowMorning}deg,
-        lemonchiffon ${noon}deg,
-        gold ${yellowAfternoon}deg,
-        lightcoral ${pinkAfternoon}deg,
-        darkblue ${sundown}deg,
-        midnightblue ${blueEvening}deg
+        #00173B ${blueMorning}deg,
+        #072C70 ${dawn}deg,
+        #E772A6 ${pinkMorning}deg,
+        #FDC500 ${yellowMorning}deg,
+        #FFF8D6 ${noon}deg,
+        #FDC500 ${yellowAfternoon}deg,
+        #FD5E5E ${pinkAfternoon}deg,
+        #00296B ${sundown}deg,
+        #00173B ${blueEvening}deg
         )`,
     };
 
