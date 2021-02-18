@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import Container from './Container';
@@ -11,33 +12,16 @@ function App() {
 
   // default to Japan
   const lat = 35.68;
-  const lon = 35.68;
-  const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}`;
+  const lon = 139.75;
+  const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=today&formatted=0`;
 
   const [today, setToday] = useState(new Date());
   const [sunrise, setSunrise] = useState(new Date());
   const [sunset, setSunset] = useState(new Date());
 
-  const timeFormat = /^(?<hour>\d+):(?<minute>\d+):(?<second>\d+)\s(?<meridiem>\w\w)$/;
-
   function APITimeToDate(APITime) {
-    const found = APITime.match(timeFormat);
-
-    const hour = (found.groups.meridiem === 'PM')
-      ? parseInt(found.groups.hour, 10) + 12
-      : parseInt(found.groups.hour, 10);
-
-    const created = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate(),
-      hour,
-      parseInt(found.groups.minute, 10),
-      parseInt(found.groups.second, 10),
-    );
-    console.log(today);
-    console.log(created);
-    return created;
+    const UTCTime = new Date(APITime);
+    return new Date(UTCTime.toLocaleString());
   }
 
   function fetchSunsetSunrise() {
@@ -51,11 +35,8 @@ function App() {
       .catch((error) => {
         // handle error
         console.log(error);
-        setSunrise(new Date('2021-02-19T03:24:00'));
-        setSunset(new Date('2021-02-19T03:24:00'));
-      })
-      .then(() => {
-        // always executed
+        setSunrise(new Date('2021-02-18T6:24:15'));
+        setSunset(new Date('2021-02-18T17:25:27'));
       });
   }
 
@@ -75,7 +56,6 @@ function App() {
     const interval = setInterval(
       () => {
         setToday(new Date());
-        console.log('checking');
         if (!sameDay(today, sunrise)) {
           fetchSunsetSunrise();
         }

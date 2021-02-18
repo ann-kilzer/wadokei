@@ -8,7 +8,7 @@ import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 export default function Container({ sunrise, sunset }) {
   const [date, setDate] = useState(new Date());
 
-  const [wa, setWa] = useState(false);
+  const [wa, setWa] = useState(true);
 
   // update the time every second
   useEffect(() => {

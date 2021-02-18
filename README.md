@@ -75,6 +75,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ## Inspiration & Citations
 - https://github.com/wojtekmaj/react-clock
 - https://www.sitepoint.com/react-toggle-switch-reusable-component/
+- http://sunrise-sunset.org/api for sunrise / sunset data
 
 
 Thank you to [Mercari Japan](https://mercari.jp), who allowed me to work on this project as part of a Hackathon. If you'd like to
