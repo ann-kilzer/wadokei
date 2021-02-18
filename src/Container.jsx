@@ -5,8 +5,7 @@ import Tokei from './Tokei';
 import Wadokei from './Wadokei';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 
-export default function Container(props) {
-  const { sunrise, sunset } = props;
+export default function Container({ sunrise, sunset }) {
   const [date, setDate] = useState(new Date());
 
   const [wa, setWa] = useState(false);
@@ -46,7 +45,7 @@ export default function Container(props) {
         id="waToggle"
         checked={wa}
         onChange={onWaChange}
-        optionLabels={['和', '外']}
+        optionLabels={['和', '洋']}
       />
       {renderClock()}
     </div>
