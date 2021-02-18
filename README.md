@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# About 和時計　（Wadokei)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TODO
+https://ja.wikipedia.org/wiki/%E5%92%8C%E6%99%82%E8%A8%88
 
 ## Available Scripts
 
@@ -73,3 +74,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Inspiration & Citations
 - https://github.com/wojtekmaj/react-clock
+- https://www.sitepoint.com/react-toggle-switch-reusable-component/
+
+
+Thank you to [Mercari Japan](https://mercari.jp), who allowed me to work on this project as part of a Hackathon. If you'd like to
+do creative coding and contribute to an exciting e-commerce platform in Japan, please check out our job listings [here](https://careers.mercari.com/search-jobs/). Overseas applicants welcome!
