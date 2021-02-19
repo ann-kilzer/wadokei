@@ -20,7 +20,7 @@ Sources:
 [SEIKO Clock Museum Wadokei explanation](https://museum.seiko.co.jp/en/knowledge/relation_15/)
 [Wikipedia EN](https://en.wikipedia.org/wiki/Japanese_clock)
 [Wikipedia JA](https://ja.wikipedia.org/wiki/%E5%92%8C%E6%99%82%E8%A8%88)
-Matsumoto Clock Museum
+[Matsumoto Clock Museum](https://www.japan-guide.com/e/e6057.html)
 
 ## This project
 
