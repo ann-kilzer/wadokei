@@ -5,13 +5,16 @@
 Early mechanical clocks were introduced to Japan by the Europeans in the 16th century. During Japan's isolationist period, from 1641, Japanese clockmakers built upon the technology from these first examples. By the Edo period, these skilled 
 clockmakers were making clocks that followed the Japanese system of time, which divided used 12 Toki (hours), 6 for
 the period of sunlight, and 6 for the period of dark. These clocks were known as 和時計 (Wadokei) and were quite
-complex due to the "unfixed" nature of the hours. Day Toki were longer in summer and shorter in winter, and night Toki were shorter in summer and longer in winter.
+complex due to the "unfixed" nature of the hours. Day Toki were longer in summer and shorter in winter, and night Toki were shorter in summer and longer in winter. 
 
 How did the clock makers address this challenge?
 1) Make the hands move faster during certain parts of the day
 2) Change the size of the Toki regions
 
-By the early Meiji period, Japan switched to the standard 24 'fixed' hour time system.
+Toki names followed the Chinese Zodiac and Japanese numeral system.
+
+By the early Meiji period, Japan switched to the standard 24 'fixed' hour time system, but one can still find
+these mechanical masterpieces at clock museums in Tokyo and Matsumoto.
 
 Sources:
 [SEIKO Clock Museum Wadokei explanation](https://museum.seiko.co.jp/en/knowledge/relation_15/)
