@@ -1,7 +1,35 @@
 # About 和時計　（Wadokei)
 
-TODO
-https://ja.wikipedia.org/wiki/%E5%92%8C%E6%99%82%E8%A8%88
+## History of 和時計
+
+Early mechanical clocks were introduced to Japan by the Europeans in the 16th century. During Japan's isolationist period, from 1641, Japanese clockmakers built upon the technology from these first examples. By the Edo period, these skilled 
+clockmakers were making clocks that followed the Japanese system of time, which divided used 12 Toki (hours), 6 for
+the period of sunlight, and 6 for the period of dark. These clocks were known as 和時計 (Wadokei) and were quite
+complex due to the "unfixed" nature of the hours. Day Toki were longer in summer and shorter in winter, and night Toki were shorter in summer and longer in winter.
+
+How did the clock makers address this challenge?
+1) Make the hands move faster during certain parts of the day
+2) Change the size of the Toki regions
+
+By the early Meiji period, Japan switched to the standard 24 'fixed' hour time system.
+
+Sources:
+[SEIKO Clock Museum Wadokei explanation](https://museum.seiko.co.jp/en/knowledge/relation_15/)
+[Wikipedia EN](https://en.wikipedia.org/wiki/Japanese_clock)
+[Wikipedia JA](https://ja.wikipedia.org/wiki/%E5%92%8C%E6%99%82%E8%A8%88)
+Matsumoto Clock Museum
+
+## This project
+
+I built this project to improve my React and general frontend skills. It has a toggle between a western style clock and a 和時計. I adjusted the size of the hours based on the sunrise and sunset times, fetched from an [API](http://sunrise-sunset.org/api).
+
+Currently it only tells time in Japan :)
+
+Future enhancements coming.
+
+## View a working demo
+
+https://ann-kilzer.github.io/wadokei/
 
 ## Available Scripts
 
