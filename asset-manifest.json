@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/wadokei/static/css/main.cb9f6500.chunk.css",
+    "main.js": "/wadokei/static/js/main.044006ff.chunk.js",
+    "main.js.map": "/wadokei/static/js/main.044006ff.chunk.js.map",
+    "runtime-main.js": "/wadokei/static/js/runtime-main.cb8383a5.js",
+    "runtime-main.js.map": "/wadokei/static/js/runtime-main.cb8383a5.js.map",
+    "static/js/2.544e6d56.chunk.js": "/wadokei/static/js/2.544e6d56.chunk.js",
+    "static/js/2.544e6d56.chunk.js.map": "/wadokei/static/js/2.544e6d56.chunk.js.map",
+    "static/js/3.35627130.chunk.js": "/wadokei/static/js/3.35627130.chunk.js",
+    "static/js/3.35627130.chunk.js.map": "/wadokei/static/js/3.35627130.chunk.js.map",
+    "index.html": "/wadokei/index.html",
+    "static/css/main.cb9f6500.chunk.css.map": "/wadokei/static/css/main.cb9f6500.chunk.css.map",
+    "static/js/2.544e6d56.chunk.js.LICENSE.txt": "/wadokei/static/js/2.544e6d56.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cb8383a5.js",
+    "static/js/2.544e6d56.chunk.js",
+    "static/css/main.cb9f6500.chunk.css",
+    "static/js/main.044006ff.chunk.js"
+  ]
+}
