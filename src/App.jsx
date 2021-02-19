@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import Container from './Container';
@@ -8,8 +7,6 @@ const axios = require('axios');
 const MILLIS_PER_MINUTE = 60 * 1000;
 
 function App() {
-  // TODO: Fetch from https://sunrise-sunset.org/api
-
   // default to Japan
   const lat = 35.68;
   const lon = 139.75;
@@ -34,7 +31,7 @@ function App() {
       })
       .catch((error) => {
         // handle error
-        console.log(error);
+        console.error(error);
         setSunrise(new Date('2021-02-18T6:24:15'));
         setSunset(new Date('2021-02-18T17:25:27'));
       });
