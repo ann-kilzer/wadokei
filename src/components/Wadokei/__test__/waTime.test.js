@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import WaTime from './waTime';
+import WaTime from '../waTime';
 
 const sunrise = new Date('2021-02-17T06:26:31');
 const sunset = new Date('2021-02-17T17:23:29');

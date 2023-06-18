@@ -1,11 +1,22 @@
 // eslint-disable jsx-a11y/label-has-associated-control
 import './ToggleSwitch.scss';
-import React from 'react';
-import PropTypes from 'prop-types';
+import { FC, SyntheticEvent } from 'react';
 
-export default function ToggleSwitch({
-  id, checked, onChange, optionLabels,
-}) {
+interface ToggleSwitchProps {
+  id: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  optionLabels: Array<string>;
+}
+
+const ToggleSwitch: FC<ToggleSwitchProps> = ({
+  id, checked, onChange, optionLabels = ['ON', 'OFF'],
+}) => { 
+  const changeHandler = (e: SyntheticEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement
+    onChange(target.checked)
+}
+
   return (
     <div className="toggle-switch">
       <input
@@ -14,7 +25,7 @@ export default function ToggleSwitch({
         name={id}
         id={id}
         checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
+        onChange={changeHandler}
       />
       {id ? (
         <label className="toggle-switch-label" htmlFor={id}>
@@ -33,13 +44,4 @@ export default function ToggleSwitch({
   );
 }
 
-ToggleSwitch.propTypes = {
-  id: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
-  onChange: PropTypes.instanceOf(Function).isRequired,
-  optionLabels: PropTypes.instanceOf(Array),
-};
-
-ToggleSwitch.defaultProps = {
-  optionLabels: ['ON', 'OFF'],
-};
+export default ToggleSwitch;

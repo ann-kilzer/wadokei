@@ -1,20 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Tick from './Tick';
-import Hand from './Hand';
-import unfixedHours from './unfixedHours';
+import { FC} from 'react';
+import Tick from '../Tick/Tick';
+import Hand from '../Hand/Hand';
+import unfixedHours, { Region } from './unfixedHours';
 import WaTime from './waTime';
 
 const REGIONS = 6;
 const MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
 const MINUTES_PER_DAY = 24 * 60;
 
-export default function Wadokei(props) {
-  const { date, sunrise, sunset } = props;
+interface WadokeiProps {
+  date: Date;
+  sunrise: Date;
+  sunset: Date;
+}
+
+const Wadokei : FC<WadokeiProps> = ({date, sunrise, sunset}) => {
   const waTime = new WaTime(date, sunrise, sunset);
 
   // Calculate the day regions
-  const daytime = sunset - sunrise;
+  const daytime = sunset.valueOf() - sunrise.valueOf();
   const dayRegion = daytime / REGIONS;
   const dayAngle = (dayRegion / MILLIS_PER_DAY) * 360;
   const dayStart = 360 - 3 * dayAngle;
@@ -25,7 +29,7 @@ export default function Wadokei(props) {
   const nightAngle = (nightRegion / MILLIS_PER_DAY) * 360;
   const nightStart = dayAngle * 3;
 
-  function renderRegion(region, name, angle, offset = 0) {
+  function renderRegion(region: Region, name: string, angle: number, offset = 0) {
     const hourTicks = [];
 
     for (let i = 0; i < region.length; i += 1) {
@@ -139,9 +143,4 @@ export default function Wadokei(props) {
     </>
   );
 }
-
-Wadokei.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
-  sunrise: PropTypes.instanceOf(Date).isRequired,
-  sunset: PropTypes.instanceOf(Date).isRequired,
-};
+ export default Wadokei;

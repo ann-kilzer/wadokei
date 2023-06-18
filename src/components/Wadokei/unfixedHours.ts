@@ -1,3 +1,17 @@
+export interface Toki {
+  strike: number;
+  numeral: string;
+  zodiacSymbol: string;
+  zodiacEmoji: string;
+}
+
+export type Region = Array<Toki>
+
+interface IUnfixedHours {
+  day: Region;
+  night: Region;
+}
+
 const UnfixedHours = {
   day: [
     {
@@ -75,6 +89,6 @@ const UnfixedHours = {
       zodiacEmoji: '🐅',
     },
   ],
-};
+} as IUnfixedHours;
 
 export default UnfixedHours;
