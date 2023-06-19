@@ -1,11 +1,16 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Tokei from './Tokei';
-import Wadokei from './Wadokei';
-import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
+import { FC, useEffect, useState } from 'react';
+import Tokei from './components/Tokei/Tokei';
+import Wadokei from './components/Wadokei/Wadokei';
+import ToggleSwitch from './components/ToggleSwitch/ToggleSwitch';
 
-export default function Container({ sunrise, sunset, size }) {
+interface ContainerProps {
+  sunrise: Date;
+  sunset: Date;
+  size?: number;
+}
+
+const Container : FC<ContainerProps> = ({ sunrise, sunset, size=600 }) => {
   const [date, setDate] = useState(new Date());
 
   const [wa, setWa] = useState(true);
@@ -35,7 +40,7 @@ export default function Container({ sunrise, sunset, size }) {
     return (<Tokei hour={hour} minute={minute} second={second} />);
   }
 
-  const onWaChange = (checked) => {
+  const onWaChange = (checked: boolean) => {
     setWa(checked);
   };
 
@@ -64,12 +69,4 @@ export default function Container({ sunrise, sunset, size }) {
   );
 }
 
-Container.propTypes = {
-  sunrise: PropTypes.instanceOf(Date).isRequired,
-  sunset: PropTypes.instanceOf(Date).isRequired,
-  size: PropTypes.number,
-};
-
-Container.defaultProps = {
-  size: 600,
-};
+export default Container;

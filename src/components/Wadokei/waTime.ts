@@ -3,7 +3,15 @@ const MILLIS_PER_MINUTE = 60 * 1000;
 const MINUTES_PER_DAY = 24 * 60;
 
 export default class WaTime {
-  constructor(date, sunrise, sunset) {
+  public timeMinutes = 0
+  public dayLengthMinutes = 0
+  public nightLengthMinutes = 0
+  public sunriseTimeMinutes = 0
+  public sunsetTimeMinutes = 0
+  public minutesFromSunrise = 0
+  public minutesFromSunset = 0
+
+  constructor(date: Date, sunrise: Date, sunset: Date) {
     const timeMinutes = date.getHours() * 60 + date.getMinutes();
 
     this.updateSunriseSunset(sunrise, sunset);
@@ -11,9 +19,9 @@ export default class WaTime {
   }
 
   // to be called once per day when updating the sunrise and sunset times
-  updateSunriseSunset(sunrise, sunset) {
+  updateSunriseSunset(sunrise: Date, sunset: Date) {
     // minutes of daylight according to western time
-    this.dayLengthMinutes = (sunset - sunrise) / MILLIS_PER_MINUTE;
+    this.dayLengthMinutes = (sunset.valueOf() - sunrise.valueOf()) / MILLIS_PER_MINUTE;
     // minutes of night according to western time
     this.nightLengthMinutes = MINUTES_PER_DAY - this.dayLengthMinutes;
 
@@ -25,7 +33,7 @@ export default class WaTime {
 
   // to be called whenever we need to update the time
   // must be called after sunrise / sunset are updated
-  updateTime(timeMinutes) {
+  updateTime(timeMinutes: number) {
     this.timeMinutes = timeMinutes;
 
     this.minutesFromSunrise = timeMinutes - this.sunriseTimeMinutes;

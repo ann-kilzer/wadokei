@@ -1,9 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Tick from './Tick';
-import Hand from './Hand';
+import {FC} from 'react';
+import Tick from '../Tick/Tick';
+import Hand from '../Hand/Hand';
 
-export default function Tokei(props) {
+interface TokeiProps {
+  hour: number;
+  minute: number;
+  second: number;
+}
+
+const Tokei: FC<TokeiProps> = ({hour, minute, second}) => {
   // This makes the hour ticks
   function renderHourTicksFn() {
     const hourTicks = [];
@@ -20,10 +25,8 @@ export default function Tokei(props) {
   }
 
   // Adjust the time
-  const { hour } = props;
-  let { minute, second } = props;
-  minute = minute < 10 ? `0${minute}` : minute;
-  second = second < 10 ? `0${second}` : second;
+  const stringMinute = minute < 10 ? `0${minute}` : minute;
+  const stringSecond = second < 10 ? `0${second}` : second;
 
   function renderMiddle() {
     return (
@@ -75,9 +78,9 @@ export default function Tokei(props) {
         <h1>
           {hour}
           :
-          {minute}
+          {stringMinute}
           :
-          {second}
+          {stringSecond}
         </h1>
       </div>
     );
@@ -97,14 +100,5 @@ export default function Tokei(props) {
   );
 }
 
-Tokei.propTypes = {
-  hour: PropTypes.number,
-  minute: PropTypes.number,
-  second: PropTypes.string,
-};
 
-Tokei.defaultProps = {
-  hour: 12,
-  minute: 0,
-  second: 0,
-};
+export default Tokei;

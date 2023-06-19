@@ -1,8 +1,7 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Container from './Container';
-
-const axios = require('axios');
+import axios from 'axios';
 
 const MILLIS_PER_MINUTE = 60 * 1000;
 
@@ -16,7 +15,7 @@ function App() {
   const [sunrise, setSunrise] = useState(new Date());
   const [sunset, setSunset] = useState(new Date());
 
-  function APITimeToDate(APITime) {
+  function APITimeToDate(APITime: string) {
     const UTCTime = new Date(APITime);
     return new Date(UTCTime.toLocaleString());
   }
@@ -42,10 +41,10 @@ function App() {
     fetchSunsetSunrise();
   }, []);
 
-  function sameDay(day1, day2) {
-    return day1.getDate === day2.getDate()
-      && day1.getMonth === day2.getMonth()
-      && day1.getYear === day2.getYear();
+  function sameDay(day1: Date, day2: Date) {
+    return day1.getDate() === day2.getDate()
+      && day1.getMonth() === day2.getMonth()
+      // && day1.getYear() === day2.getYear();
   }
 
   // recheck every interval

@@ -1,21 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 
-export default function Tick({
+interface TickProps {
+  symbol: string
+  regionName?: string;
+  width?: number;
+  angle?: number;
+  length?: number;
+  emoji?: string;
+  secondarySymbol?: string;
+}
+
+const Tick: FC<TickProps> = ({
+  symbol,
+  regionName = '',
+  width = 3,
   angle = 0,
   length = 5,
-  width = 3,
-  symbol,
-  emoji,
-  secondarySymbol,
-  regionName,
-}) {
+  emoji = '',
+  secondarySymbol = '',
+})=> {
   return (
     <div
       className={`tokei_tick ${regionName}_tick`}
       style={{
         transform: `rotate(${angle}deg)`,
       }}
+      data-testid={`${regionName}_tick`}
     >
       <div
         className="tokei_tick_inner"
@@ -50,20 +60,4 @@ export default function Tick({
   );
 }
 
-Tick.propTypes = {
-  angle: PropTypes.number,
-  length: PropTypes.number,
-  symbol: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  regionName: PropTypes.string.isRequired,
-  emoji: PropTypes.string,
-  secondarySymbol: PropTypes.string,
-};
-
-Tick.defaultProps = {
-  angle: 0,
-  length: 5,
-  width: 3,
-  emoji: undefined,
-  secondarySymbol: undefined,
-};
+export default Tick
