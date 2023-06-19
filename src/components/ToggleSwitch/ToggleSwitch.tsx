@@ -6,7 +6,7 @@ interface ToggleSwitchProps {
   id: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
-  optionLabels: Array<string>;
+  optionLabels?: Array<string>;
 }
 
 const ToggleSwitch: FC<ToggleSwitchProps> = ({

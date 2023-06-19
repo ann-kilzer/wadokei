@@ -25,6 +25,7 @@ const Tick: FC<TickProps> = ({
       style={{
         transform: `rotate(${angle}deg)`,
       }}
+      data-testid={`${regionName}_tick`}
     >
       <div
         className="tokei_tick_inner"

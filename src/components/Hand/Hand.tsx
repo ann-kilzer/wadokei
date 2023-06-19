@@ -21,6 +21,7 @@ const Hand: FC<HandProps> = ({
       style={{
         transform: `rotate(${angle}deg)`,
       }}
+      data-testid='hand'
     >
       <div
         className={`inner_hand ${name}_hand`}

@@ -10,7 +10,7 @@ interface ContainerProps {
   size?: number;
 }
 
-const Container : FC<ContainerProps> = ({ sunrise, sunset, size }) => {
+const Container : FC<ContainerProps> = ({ sunrise, sunset, size=600 }) => {
   const [date, setDate] = useState(new Date());
 
   const [wa, setWa] = useState(true);
