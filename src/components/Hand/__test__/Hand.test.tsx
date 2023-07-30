@@ -5,9 +5,9 @@ import Hand from '../Hand';
 
 describe('Hand', () => {
   it('should apply the Hand name to the class', async () => {
-    render(<Hand name="name"/>)
+    render(<Hand name="name" />)
 
-    const hand = await screen.findByTestId('hand')
+    const hand = await screen.findByTestId('name_hand')
     expect(hand).toHaveClass('name_hand')
     expect(hand).toBeVisible()
   })

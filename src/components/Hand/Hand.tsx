@@ -14,14 +14,14 @@ const Hand: FC<HandProps> = ({
   length = 95,
   width = 3,
   oppositeLength = 10,
-})=> {
+}) => {
   return (
     <div
       className={`outer_hand ${name}_hand`}
       style={{
         transform: `rotate(${angle}deg)`,
       }}
-      data-testid='hand'
+      data-testid={`${name}_hand`}
     >
       <div
         className={`inner_hand ${name}_hand`}
@@ -31,7 +31,7 @@ const Hand: FC<HandProps> = ({
           bottom: `${50 - (oppositeLength / 2)}%`,
         }}
       />
-    </div>
+    </div >
   );
 }
 
