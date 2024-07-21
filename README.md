@@ -28,7 +28,7 @@ I built this project to improve my React and general frontend skills. It has a t
 
 Currently it only tells time in Japan :)
 
-Future enhancements coming.
+Future enhancements coming 😇
 
 ## View a working demo
 
