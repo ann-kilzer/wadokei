@@ -2,6 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Container from './Container';
 import axios from 'axios';
+import { APITimeToDate, isSameDay } from './timeUtils/timeUtils';
 
 const MILLIS_PER_MINUTE = 60 * 1000;
 
@@ -27,11 +28,6 @@ function App() {
     }
   }
 
-  function APITimeToDate(APITime: string) {
-    const UTCTime = new Date(APITime);
-    return new Date(UTCTime.toLocaleString());
-  }
-
   async function fetchSunsetSunrise() {
     const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=today&formatted=0`;
     axios.get(url)
@@ -44,7 +40,7 @@ function App() {
       .catch((error) => {
         // handle error
         console.error(error);
-        setSunrise(new Date('2021-02-18T6:24:15'));
+        setSunrise(new Date('2021-02-18T06:24:15'));
         setSunset(new Date('2021-02-18T17:25:27'));
       });
   }
@@ -58,18 +54,13 @@ function App() {
     fetchSunsetSunrise()
   }, [lat, lon])
 
-  function sameDay(day1: Date, day2: Date) {
-    return day1.getDate() === day2.getDate()
-      && day1.getMonth() === day2.getMonth()
-    // && day1.getYear() === day2.getYear();
-  }
 
   // recheck every interval
   useEffect(() => {
     const interval = setInterval(
       () => {
         setToday(new Date());
-        if (!sameDay(today, sunrise)) {
+        if (!isSameDay(today, sunrise)) {
           fetchSunsetSunrise();
         }
       },
