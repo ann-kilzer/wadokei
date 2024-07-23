@@ -1,4 +1,4 @@
-import { FC} from 'react';
+import { FC, useEffect } from 'react';
 import Tick from '../Tick/Tick';
 import Hand from '../Hand/Hand';
 import unfixedHours, { Region } from './unfixedHours';
@@ -14,8 +14,14 @@ interface WadokeiProps {
   sunset: Date;
 }
 
-const Wadokei : FC<WadokeiProps> = ({date, sunrise, sunset}) => {
+const Wadokei: FC<WadokeiProps> = ({ date, sunrise, sunset }) => {
   const waTime = new WaTime(date, sunrise, sunset);
+
+  useEffect(() => {
+    if (sunrise > sunset) {
+      console.error('unexpected sunrise and sunset')
+    }
+  }, [])
 
   // Calculate the day regions
   const daytime = sunset.valueOf() - sunrise.valueOf();
@@ -143,4 +149,4 @@ const Wadokei : FC<WadokeiProps> = ({date, sunrise, sunset}) => {
     </>
   );
 }
- export default Wadokei;
+export default Wadokei;

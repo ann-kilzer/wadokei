@@ -18,14 +18,14 @@ const Tick: FC<TickProps> = ({
   length = 5,
   emoji = '',
   secondarySymbol = '',
-})=> {
+}) => {
   return (
     <div
       className={`tokei_tick ${regionName}_tick`}
       style={{
         transform: `rotate(${angle}deg)`,
       }}
-      data-testid={`${regionName}_tick`}
+      aria-label='tick'
     >
       <div
         className="tokei_tick_inner"

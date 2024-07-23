@@ -21,7 +21,7 @@ const Hand: FC<HandProps> = ({
       style={{
         transform: `rotate(${angle}deg)`,
       }}
-      data-testid={`${name}_hand`}
+      aria-label={`${name}_hand`}
     >
       <div
         className={`inner_hand ${name}_hand`}

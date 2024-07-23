@@ -22,15 +22,15 @@ describe('Tokei', () => {
     expect(digitalTime).toBeVisible()
 
     // analog time
-    const hourHand = await screen.findByTestId('hour_hand')
+    const hourHand = await screen.findByLabelText('hour_hand')
     expect(hourHand).toBeVisible()
     expect(hourHand).toHaveStyle(`transform: rotate(${hourAngle}deg);`)
 
-    const minuteHand = await screen.findByTestId('minute_hand')
+    const minuteHand = await screen.findByLabelText('minute_hand')
     expect(minuteHand).toBeVisible()
     expect(minuteHand).toHaveStyle(`transform: rotate(${minuteAngle}deg);`)
 
-    const secondHand = await screen.findByTestId('second_hand')
+    const secondHand = await screen.findByLabelText('second_hand')
     expect(secondHand).toBeVisible()
     expect(secondHand).toHaveStyle(`transform: rotate(${secondAngle}deg);`)
   })

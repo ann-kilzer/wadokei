@@ -7,7 +7,7 @@ describe('Hand', () => {
   it('should apply the Hand name to the class', async () => {
     render(<Hand name="name" />)
 
-    const hand = await screen.findByTestId('name_hand')
+    const hand = await screen.findByLabelText('name_hand')
     expect(hand).toHaveClass('name_hand')
     expect(hand).toBeVisible()
   })
