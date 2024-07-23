@@ -6,21 +6,34 @@ import axios from 'axios';
 const MILLIS_PER_MINUTE = 60 * 1000;
 
 function App() {
-  // default to Japan
-  const lat = 35.68;
-  const lon = 139.75;
-  const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=today&formatted=0`;
+  const TOKYO_LAT = 35.68;
+  const TOKYO_LON = 139.75;
 
   const [today, setToday] = useState(new Date());
   const [sunrise, setSunrise] = useState(new Date());
   const [sunset, setSunset] = useState(new Date());
+  const [lat, setLat] = useState(TOKYO_LAT)
+  const [lon, setLon] = useState(TOKYO_LON)
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLat(position.coords.latitude)
+        setLon(position.coords.longitude)
+        console.log(`Updating coordinates: ${lat}, ${lon}`);
+      });
+    } else {
+      console.warn('Geolocation is not supported by this browser.')
+    }
+  }
 
   function APITimeToDate(APITime: string) {
     const UTCTime = new Date(APITime);
     return new Date(UTCTime.toLocaleString());
   }
 
-  function fetchSunsetSunrise() {
+  async function fetchSunsetSunrise() {
+    const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=today&formatted=0`;
     axios.get(url)
       .then((response) => {
         // handle success
@@ -38,13 +51,17 @@ function App() {
 
   // initial call
   useEffect(() => {
-    fetchSunsetSunrise();
+    getLocation();
   }, []);
+
+  useEffect(() => {
+    fetchSunsetSunrise()
+  }, [lat, lon])
 
   function sameDay(day1: Date, day2: Date) {
     return day1.getDate() === day2.getDate()
       && day1.getMonth() === day2.getMonth()
-      // && day1.getYear() === day2.getYear();
+    // && day1.getYear() === day2.getYear();
   }
 
   // recheck every interval
