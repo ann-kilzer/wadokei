@@ -1,3 +1,10 @@
+/**
+ * Toki are time intervals similar to hours. They contain the following:
+ * strike: The number representing the interval, one from the set (4, 5, 6, 7, 8, 9)
+ * numeral: The Japanese kanji for the strike
+ * zodiacSymbol: The Japanese kanji for the corresponding zodiac sign
+ * zodiacEmoji: An emoji representing the animal
+ */
 export interface Toki {
   strike: number;
   numeral: string;
@@ -5,13 +12,22 @@ export interface Toki {
   zodiacEmoji: string;
 }
 
+/**
+ * A Region represents either Day or Night, and is a series of "Toki"
+ */
 export type Region = Array<Toki>
 
+/**
+ * IUnfixedHours represents the "unfixed" time units of Japanese style clocks
+ */
 interface IUnfixedHours {
   day: Region;
   night: Region;
 }
 
+/**
+ * An object representing the six day and six night "Toki"
+ */
 const UnfixedHours = {
   day: [
     {
