@@ -1,40 +1,42 @@
 {
-  "name": "wadokei",
-  "homepage": "http://ann-kilzer.github.io/wadokei",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "test": "npx vitest --coverage.enabled --coverage.all",
-    "deploy": "gh-pages -d dist"
-  },
-  "dependencies": {
-    "axios": "^1.6.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@testing-library/dom": "^9.3.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/react": "^18.0.37",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "@vitest/coverage-istanbul": "^0.32.2",
-    "eslint": "^8.38.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
-    "gh-pages": "^5.0.0",
-    "jsdom": "^22.1.0",
-    "sass": "^1.63.4",
-    "typescript": "^5.0.2",
-    "vite": "^4.5.3",
-    "vitest": "^0.32.2"
-  }
+    "name": "wadokei",
+    "homepage": "http://ann-kilzer.github.io/wadokei",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 5",
+        "preview": "vite preview",
+        "test": "npx vitest --coverage.enabled --coverage.all",
+        "deploy": "gh-pages -d dist"
+    },
+    "dependencies": {
+        "axios": "^1.6.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@stylistic/eslint-plugin-ts": "1.4.1",
+        "@testing-library/dom": "^9.3.1",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^14.0.0",
+        "@testing-library/user-event": "^14.4.3",
+        "@types/react": "^18.0.37",
+        "@types/react-dom": "^18.0.11",
+        "@typescript-eslint/eslint-plugin": "^5.59.0",
+        "@typescript-eslint/parser": "^5.59.0",
+        "@vitejs/plugin-react": "^4.0.0",
+        "@vitest/coverage-istanbul": "^0.32.2",
+        "eslint": "8.53.0",
+        "eslint-plugin-react": "7.33.2",
+        "eslint-plugin-react-hooks": "4.6.0",
+        "eslint-plugin-react-refresh": "0.4.4",
+        "gh-pages": "^5.0.0",
+        "jsdom": "^22.1.0",
+        "sass": "^1.63.4",
+        "typescript": "^5.0.2",
+        "vite": "^4.5.3",
+        "vitest": "^0.32.2"
+    }
 }

@@ -5,29 +5,29 @@ import userEvent from '@testing-library/user-event'
 import ToggleSwitch from '../ToggleSwitch';
 
 describe('ToggleSwitch', () => {
-  it('should toggle on', async () => {
-    const user = userEvent.setup()
-    const mockHandler = vi.fn(() => {})
-    render(<ToggleSwitch id='1' checked={false} onChange={mockHandler}/>)
+    it('should toggle on', async () => {
+        const user = userEvent.setup()
+        const mockHandler = vi.fn(() => {})
+        render(<ToggleSwitch id='1' checked={false} onChange={mockHandler}/>)
 
-    const toggle = await screen.findByRole('checkbox');
-    expect(toggle).toBeVisible();
+        const toggle = await screen.findByRole('checkbox');
+        expect(toggle).toBeVisible();
 
-    await user.click(toggle)
+        await user.click(toggle)
 
-    expect(mockHandler).toHaveBeenCalledOnce()
-  })
+        expect(mockHandler).toHaveBeenCalledOnce()
+    })
 
-  it('should toggle off', async () => {
-    const user = userEvent.setup()
-    const mockHandler = vi.fn(() => {})
-    render(<ToggleSwitch id='1' checked={true} onChange={mockHandler}/>)
+    it('should toggle off', async () => {
+        const user = userEvent.setup()
+        const mockHandler = vi.fn(() => {})
+        render(<ToggleSwitch id='1' checked={true} onChange={mockHandler}/>)
 
-    const toggle = await screen.findByRole('checkbox');
-    expect(toggle).toBeVisible();
+        const toggle = await screen.findByRole('checkbox');
+        expect(toggle).toBeVisible();
 
-    await user.click(toggle)
+        await user.click(toggle)
 
-    expect(mockHandler).toHaveBeenCalledOnce()
-  })
+        expect(mockHandler).toHaveBeenCalledOnce()
+    })
 })

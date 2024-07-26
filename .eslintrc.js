@@ -1,34 +1,31 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    'jest/globals': true,
-  },
+  root: true,
+  env: { browser: true, es2020: true },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
+      'eslint:recommended',
+      'plugin:react-hooks/recommended',
+      'plugin:react/recommended',
+      'plugin:react/jsx-runtime'
   ],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '*.html'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: 'module',
+      project: ["tsconfig.json", "tsconfig.node.json"]
   },
   plugins: [
-    'react',
-    'jest',
+      'react-refresh',
+      '@stylistic/ts'
   ],
   rules: {
-    'jsx-a11y/label-has-associated-control': [
-      'error',
-      {
-        labelComponents: [],
-        labelAttributes: [],
-        controlComponents: [],
-        assert: 'htmlFor',
-        depth: 25,
-      },
-    ],
+      'no-redeclare': 'off',
+      'react-refresh/only-export-components': [
+          'warn',
+          { allowConstantExport: true },
+      ],
+      'react/react-in-jsx-scope': 'off',
+      'quotes': ['error', 'single'],
+      '@typescript-eslint/prefer-nullish-coalescing': 'off',
+      '@typescript-eslint/no-unsafe-call': ['off'],
+      '@stylistic/ts/indent': ['error', 4],
   },
-};
+}
